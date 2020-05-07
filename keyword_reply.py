@@ -40,7 +40,8 @@ class WeatherReply(KeyWordReply):
         self.__city = content.split('+')[0]
 
     def send(self, toUser, fromUserName):
-        replyMsg = reply.TextMsg(toUser, fromUserName, GetWeather(self.__city))
+        weather_content=GetWeather(self.__city).replace('<p>','').replace('</p>','')
+        replyMsg = reply.TextMsg(toUser, fromUserName, weather_content)
         return replyMsg.send()
 
 
