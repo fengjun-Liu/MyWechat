@@ -4,7 +4,7 @@
 import reply
 import data
 import log
-from urlshorter import shorter
+
 
 
 def isexist(list,one):
@@ -55,13 +55,12 @@ class YqbReply(CustReply):
 
     def send(self, toUser, fromUserName):
         num = 1
-        jsondata = data.MyData()
-        contentlist = jsondata.readData("urls0.json")
+        contentlist = self.__Urllist
         Content = ''
         for k in contentlist.keys():
             if num % 10 == 1:
                 Content = Content + "\n"
-            Content = Content + "<a href=\"" + shorter(contentlist[k]) + "\">[No. " + str(num) + "]点这里助力~</a>\n"
+            Content = Content + "<a href=\"" + contentlist[k] + "\">[No. " + str(num) + "]点这里助力~</a>\n"
             num = num + 1
         replyMsg = reply.TextMsg(toUser, fromUserName, Content)
         #index=isexist(self.__Urllist, toUser )
@@ -75,7 +74,7 @@ class YqbReply(CustReply):
         print(index)
         if index >=0:
             self.__Urllist[index][User] = linkUrl
-            filename="urls{}.json".format(str(index-1))
+            filename="urls{}.json".format(str(index))
             self.jsondata.writeData(filename,self.__Urllist[index])
         else:
             if len(self.__Urllist[-1]) < 101:
