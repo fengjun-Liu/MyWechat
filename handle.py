@@ -55,7 +55,9 @@ class Handle(object):
                     return replyMsg.send()
                 if recMsg.MsgType == 'link':
                     replyMsg = custom_reply.parse_link(recMsg.Description)
-                    replyMsg.update(toUser, shorter(recMsg.Url))
+                    url=shorter(recMsg.Url)
+                    print(url)
+                    replyMsg.update(toUser,url)
                     return replyMsg.send(toUser, fromUser)
                 else:
                     return reply.Msg().send()
