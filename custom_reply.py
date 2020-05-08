@@ -63,7 +63,7 @@ class YqbReply(CustReply):
 
     def send(self, toUser, fromUserName):
         num = 1
-        contentlist = self.__Urllist
+        contentlist = self.__Urllist[0]
         if self.__ActionType == 'lighten':
             Content = '所有用户的点亮城市，请点击助力：\n'
         elif self.__ActionType == 'PK':
