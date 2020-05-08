@@ -14,13 +14,14 @@ def GetWeather(city):
     if result == "null":
         return "无该城市天气信息"
     else:
-        wea_cont = '<p>当前时间为：' + result["realtime"]["date"] + "（农历" + result["realtime"]["moon"] + '） ' + \
-                   result["realtime"]["time"] + '''</p><p>
-        当前温度：''' + result["realtime"]["weather"]["temperature"] + '℃   相对湿度' + result["realtime"]["weather"][
-                       "humidity"] + "%   " + result["realtime"]["wind"]["direct"] + result["realtime"]["wind"]["power"] + '''</p><p>
-        今日天气：''' + result["weather"][0]["info"]["day"][1] + '''</p><p>
-        今日温度：''' + result["weather"][0]["info"]["night"][2] + "℃ -" + result["weather"][0]["info"]["day"][2] + '''℃ </p><p>
-        日出时间：''' + result["weather"][0]["info"]["day"][5] + '''</p><p>
-        日落时间：''' + result["weather"][0]["info"]["night"][5] + '''</p>
-        '''
+        wea_cont = '<p>当前时间为：' + result["realtime"]["date"] + '''
+（农历''' + result["realtime"]["moon"] + '） ' + result["realtime"]["time"] + '''</p><p>
+当前温度：''' + result["realtime"]["weather"]["temperature"] + '''℃
+相对湿度：''' + result["realtime"]["weather"]["humidity"] + '''%  
+         '''+ result["realtime"]["wind"]["direct"] + result["realtime"]["wind"]["power"] + '''</p><p>
+今日天气：''' + result["weather"][0]["info"]["day"][1] + '''</p><p>
+今日温度：''' + result["weather"][0]["info"]["night"][2] + "℃ -" + result["weather"][0]["info"]["day"][2] + '''℃ </p><p>
+日出时间：''' + result["weather"][0]["info"]["day"][5] + '''</p><p>
+日落时间：''' + result["weather"][0]["info"]["night"][5] + '''</p>
+'''
         return wea_cont
