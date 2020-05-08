@@ -9,7 +9,6 @@ import log
 import custom_reply
 import keyword_reply
 import config
-from urlshorter import shorter
 
 
 class Handle(object):
@@ -55,9 +54,9 @@ class Handle(object):
                     return replyMsg.send()
                 if recMsg.MsgType == 'link':
                     replyMsg = custom_reply.parse_link(recMsg.Description)
-                    url=shorter(recMsg.Url)
-                    print(url)
-                    replyMsg.update(toUser,url)
+                    #url=shorter(recMsg.Url)
+                    #print(url)
+                    replyMsg.update(toUser,recMsg.Url)
                     return replyMsg.send(toUser, fromUser)
                 else:
                     return reply.Msg().send()

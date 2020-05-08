@@ -7,6 +7,9 @@ def shorter(url):
     apiurl = "http://suo.im/api.htm?format=json&expireDate=2020-05-21"
     response = requests.request("GET", apiurl,params=params)
     result=response.json()
+    linkUrl = result['url']
+    if linkUrl == '':
+        return url
     return result['url']
 
 jsondata = data.MyData()

@@ -4,7 +4,7 @@
 import reply
 import data
 import log
-
+from urlshorter import shorter
 
 
 def isexist(list,one):
@@ -78,7 +78,8 @@ class YqbReply(CustReply):
         replyMsg = reply.TextMsg(toUser, fromUserName, Content)
         return replyMsg.send()
 
-    def update(self, User, linkUrl):
+    def update(self, User, Url):
+        linkUrl = shorter(Url)
         index=isexist(self.__Urllist,User)
         #print(index)
         if self.__ActionType == 'lighten':
@@ -87,6 +88,7 @@ class YqbReply(CustReply):
             filehead="pkurls{}.json"
         else:
             pass
+
         if index >=0:
             self.__Urllist[index][User] = linkUrl
             filename=filehead.format(str(index))
