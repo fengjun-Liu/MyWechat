@@ -71,6 +71,13 @@ class YqbReply(CustReply):
         else:
             pass
         for k in contentlist.keys():
+            #如果之前缩短失败了，这里再缩短一次，成功的话更新一次链接
+            if len(contentlist[k]) > 22:
+                url = shorter(contentlist[k])
+                if url ==contentlist[k]:
+                    pass
+                else:
+                    self.update(k,contentlist[k])
             Content = Content + "<a href=\"" + contentlist[k] + "\">[No. " + str(num) + "]点这里助力~</a>\n"
             if num % 10 == 0:
                 Content = Content + "\n"
