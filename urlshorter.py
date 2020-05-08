@@ -9,7 +9,7 @@ def shorter(url):
     response = requests.request("GET", apiurl,params=params)
     result=response.json()
     linkUrl = result['url']
-    mylog.printToLog("********\n[info]Shorter response " + response.content + "\n********\n")
+    mylog.printToLog("********\n[info]Shorter response " + response.content.decode() + "\n********\n")
     if len(linkUrl) == 0:
         return url
     return result['url']
