@@ -4,6 +4,7 @@
 import reply
 import data
 import log
+from urlshorter import shorter
 
 
 def isexist(list,one):
@@ -53,11 +54,20 @@ class YqbReply(CustReply):
         self.__ActionType = acttype
 
     def send(self, toUser, fromUserName):
-        replyMsg = reply.NewsMsg(toUser, fromUserName, 'yqb', self.__UserCount-1, '点亮城市，请助力')
-        index=isexist(self.__Urllist, toUser )
-        print(index)
-        if index >=0:
-            replyMsg = reply.NewsMsg(toUser, fromUserName, 'yqb', index, '点亮城市，请助力')
+        num = 1
+        jsondata = data.MyData()
+        contentlist = jsondata.readData("urls0.json")
+        Content = ''
+        for k in contentlist.keys():
+            if num % 10 == 1:
+                Content = Content + "\n"
+            Content = Content + "<a href=\"" + shorter(contentlist[k]) + "\">[No. " + str(num) + "]点这里助力~</a>\n"
+            num = num + 1
+        replyMsg = reply.TextMsg(toUser, fromUserName, Content)
+        #index=isexist(self.__Urllist, toUser )
+        #print(index)
+        #if index >=0:
+        #    replyMsg = reply.NewsMsg(toUser, fromUserName, 'yqb', index, '点亮城市，请助力')
         return replyMsg.send()
 
     def update(self, User, linkUrl):
